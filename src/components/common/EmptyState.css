@@ -1,0 +1,49 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - REUSABLE EMPTY STATE STYLES
+   ========================================================================== */
+
+.generic-empty-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-8) var(--space-6);
+  background-color: var(--color-plaster-light);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+  margin: var(--space-4) 0;
+}
+
+.generic-empty-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-brass-subtle);
+  color: var(--color-brass-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-3);
+}
+
+.generic-empty-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  margin-bottom: var(--space-1);
+}
+
+.generic-empty-description {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  max-width: 440px;
+  line-height: 1.5;
+  margin-bottom: var(--space-4);
+}
+
+.generic-empty-btn {
+  margin-top: var(--space-2);
+}

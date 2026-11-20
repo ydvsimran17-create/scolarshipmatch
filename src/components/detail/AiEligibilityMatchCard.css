@@ -1,0 +1,206 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - AI ELIGIBILITY MATCH CARD STYLES
+   ========================================================================== */
+
+.ai-match-card {
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+  border-radius: var(--radius-xl);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-match-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.ai-match-title-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.ai-badge-crest {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-brass-subtle);
+  border: 1px solid var(--color-brass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brass-dark);
+  flex-shrink: 0;
+}
+
+.ai-match-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  margin-bottom: 2px;
+}
+
+.ai-match-score-pill {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: 0.35rem 0.85rem;
+  background-color: var(--color-midnight-subtle);
+  border: 1px solid var(--color-midnight-border);
+  border-radius: var(--radius-full);
+}
+
+.score-number {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+}
+
+.score-caption {
+  font-size: 0.725rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Progress Track */
+.ai-match-progress-track {
+  width: 100%;
+  height: 8px;
+  background-color: var(--color-plaster-dark);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-4);
+}
+
+.ai-match-progress-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-midnight) 0%,
+    var(--color-brass) 100%
+  );
+  border-radius: var(--radius-full);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Summary Box */
+.ai-match-summary-box {
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-plaster-light);
+  border: 1px solid var(--border-color-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-5);
+}
+
+/* Criteria Split Grid */
+.ai-criteria-split-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .ai-criteria-split-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.criteria-column {
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color-subtle);
+}
+
+.matched-column {
+  background-color: rgba(46, 105, 48, 0.04);
+  border-color: rgba(46, 105, 48, 0.2);
+}
+
+.pending-column {
+  background-color: rgba(158, 99, 27, 0.04);
+  border-color: rgba(158, 99, 27, 0.2);
+}
+
+.criteria-column-heading {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.matched-column .criteria-column-heading {
+  color: var(--status-success);
+}
+
+.pending-column .criteria-column-heading {
+  color: var(--status-warning);
+}
+
+.matched-icon {
+  color: var(--status-success);
+}
+
+.pending-icon {
+  color: var(--status-warning);
+}
+
+.criteria-check-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.criteria-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  line-height: var(--line-height-normal);
+}
+
+.check-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--status-success);
+  margin-top: 7px;
+  flex-shrink: 0;
+}
+
+.pending-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--status-warning);
+  margin-top: 7px;
+  flex-shrink: 0;
+}
+
+.ai-match-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-color-subtle);
+}
+
+.disclaimer-info-icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  margin-top: 2px;
+}

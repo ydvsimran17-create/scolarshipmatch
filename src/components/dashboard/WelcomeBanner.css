@@ -1,0 +1,140 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - WELCOME BANNER STYLES
+   ========================================================================== */
+
+.welcome-banner-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-8);
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    var(--color-plaster-light) 65%,
+    rgba(196, 159, 109, 0.08) 100%
+  );
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-6);
+}
+
+@media (max-width: 900px) {
+  .welcome-banner-card {
+    padding: var(--space-6) var(--space-5);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.welcome-banner-content {
+  flex: 1;
+  max-width: 640px;
+  position: relative;
+  z-index: 2;
+}
+
+.welcome-badge-pill {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.welcome-term-text {
+  font-family: var(--font-body);
+}
+
+.welcome-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 2.5vw + 0.8rem, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--space-2);
+}
+
+.welcome-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-5);
+}
+
+.welcome-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.welcome-explore-btn {
+  font-weight: var(--font-weight-semibold);
+  padding: 0.75rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.welcome-profile-btn {
+  font-size: var(--font-size-sm);
+  padding: 0.75rem 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   AI SCHOLARSHIP ASSISTANT ILLUSTRATION
+   Seamlessly blended into the banner without borders, box-shadows, or card background
+   -------------------------------------------------------------------------- */
+.welcome-banner-graphic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  width: 100%;
+}
+
+.welcome-illustration-img {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  max-height: 215px;
+  object-fit: contain;
+  display: block;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  mix-blend-mode: multiply;
+  transition: transform var(--transition-normal);
+}
+
+.welcome-illustration-img:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .welcome-banner-graphic {
+    max-width: 240px;
+    align-self: center;
+    margin-top: var(--space-3);
+  }
+
+  .welcome-illustration-img {
+    max-height: 180px;
+  }
+}
+
+@media (max-width: 640px) {
+  .welcome-banner-graphic {
+    max-width: 200px;
+  }
+
+  .welcome-illustration-img {
+    max-height: 150px;
+  }
+}

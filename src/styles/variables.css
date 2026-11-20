@@ -1,0 +1,195 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - GLOBAL DESIGN SYSTEM VARIABLES
+   Finalized Color Palette & System Tokens
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. FINALIZED PALETTE
+     ------------------------------------------------------------------------ */
+  /* 1. Currant: #912930 (Sidebar, academic crest tones, key accents) */
+  --color-currant: #912930;
+  --color-currant-dark: #741f25;
+  --color-currant-light: #ad373f;
+  --color-currant-subtle: rgba(145, 41, 48, 0.08);
+  --color-currant-border: rgba(145, 41, 48, 0.22);
+
+  /* 2. Midnight Indigo: #233E65 (Headings, primary buttons, deep contrast) */
+  --color-midnight: #233E65;
+  --color-midnight-dark: #192c48;
+  --color-midnight-light: #2d5082;
+  --color-midnight-subtle: rgba(35, 62, 101, 0.08);
+  --color-midnight-border: rgba(35, 62, 101, 0.22);
+
+  /* 3. Antique Brass: #C49F6D (Subtle highlights, badge accents, warm accents) */
+  --color-brass: #C49F6D;
+  --color-brass-dark: #a88352;
+  --color-brass-light: #d6b88d;
+  --color-brass-subtle: rgba(196, 159, 109, 0.16);
+  --color-brass-border: rgba(196, 159, 109, 0.38);
+
+  /* 4. Raw Linen: #DDD1BC (Borders, dividers, subtle structural frames) */
+  --color-linen: #DDD1BC;
+  --color-linen-dark: #c4b59b;
+  --color-linen-light: #ede6d8;
+  --color-linen-subtle: rgba(221, 209, 188, 0.5);
+
+  /* 5. Plaster: #F0EFEA (Main workspace background, soft parchment baseline) */
+  --color-plaster: #F0EFEA;
+  --color-plaster-dark: #e3e1d6;
+  --color-plaster-light: #f7f6f3;
+
+  /* Neutrals */
+  --color-white: #ffffff;
+  --color-black: #0f141c;
+
+  /* ------------------------------------------------------------------------
+     2. SEMANTIC SYSTEM MAPPINGS
+     ------------------------------------------------------------------------ */
+  /* Main Workspace & Surface Backgrounds */
+  --bg-workspace: var(--color-plaster);
+  --bg-app: var(--color-plaster);
+  --bg-card: var(--color-white);
+  --bg-card-hover: #fdfdfc;
+  --bg-card-muted: var(--color-plaster-light);
+  --bg-input: #ffffff;
+  --bg-overlay: rgba(25, 44, 72, 0.45);
+
+  /* Full-Height Sidebar Specifications */
+  --sidebar-bg: var(--color-currant);
+  --sidebar-text: #ffffff;
+  --sidebar-text-muted: var(--color-plaster);
+  --sidebar-border: rgba(221, 209, 188, 0.2);
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.08);
+  --sidebar-active-bg: rgba(255, 255, 255, 0.15);
+  --sidebar-accent: var(--color-brass);
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 72px;
+
+  /* Typography Colors */
+  --text-heading: var(--color-midnight);
+  --text-primary: #1e2633;
+  --text-secondary: #576477;
+  --text-muted: #8491a2;
+  --text-inverse: #ffffff;
+  --text-inverse-muted: var(--color-plaster);
+  --text-accent: var(--color-brass-dark);
+
+  /* Borders & Dividers */
+  --border-color: var(--color-linen);
+  --border-color-subtle: rgba(221, 209, 188, 0.65);
+  --border-color-focus: var(--color-midnight);
+  --divider-color: var(--color-linen);
+
+  /* Primary & Accent Buttons */
+  --btn-primary-bg: var(--color-midnight);
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover: var(--color-midnight-dark);
+  --btn-primary-active: #132238;
+
+  --btn-accent-bg: var(--color-brass);
+  --btn-accent-text: #192c48;
+  --btn-accent-hover: var(--color-brass-dark);
+
+  --btn-currant-bg: var(--color-currant);
+  --btn-currant-text: #ffffff;
+  --btn-currant-hover: var(--color-currant-dark);
+
+  /* Status Colors (Academic, Dignified) */
+  --status-success: #2e6930;
+  --status-success-bg: rgba(46, 105, 48, 0.1);
+  --status-warning: #9e631b;
+  --status-warning-bg: rgba(158, 99, 27, 0.1);
+  --status-error: var(--color-currant);
+  --status-error-bg: var(--color-currant-subtle);
+  --status-info: var(--color-midnight);
+  --status-info-bg: var(--color-midnight-subtle);
+
+  /* ------------------------------------------------------------------------
+     3. TYPOGRAPHY SYSTEM
+     ------------------------------------------------------------------------ */
+  --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Scale */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-md: 1.125rem;   /* 18px */
+  --font-size-lg: 1.25rem;    /* 20px */
+  --font-size-xl: 1.5rem;     /* 24px */
+  --font-size-2xl: 1.875rem;  /* 30px */
+  --font-size-3xl: 2.25rem;   /* 36px */
+  --font-size-4xl: 3rem;      /* 48px */
+
+  /* Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.35;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.65;
+
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+
+  /* ------------------------------------------------------------------------
+     4. SPACING SCALE
+     ------------------------------------------------------------------------ */
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+
+  /* ------------------------------------------------------------------------
+     5. ELEVATION & SHADOWS
+     ------------------------------------------------------------------------ */
+  --shadow-xs: 0 1px 2px rgba(35, 62, 101, 0.04);
+  --shadow-sm: 0 2px 4px rgba(35, 62, 101, 0.05), 0 1px 2px rgba(35, 62, 101, 0.03);
+  --shadow-md: 0 4px 12px rgba(35, 62, 101, 0.07), 0 2px 4px rgba(35, 62, 101, 0.04);
+  --shadow-lg: 0 10px 24px rgba(35, 62, 101, 0.08), 0 4px 8px rgba(35, 62, 101, 0.04);
+  --shadow-xl: 0 20px 32px rgba(35, 62, 101, 0.1), 0 8px 16px rgba(35, 62, 101, 0.05);
+
+  /* ------------------------------------------------------------------------
+     6. BORDER RADIUS
+     ------------------------------------------------------------------------ */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ------------------------------------------------------------------------
+     7. TRANSITIONS
+     ------------------------------------------------------------------------ */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ------------------------------------------------------------------------
+     8. LAYOUT & CONTAINERS
+     ------------------------------------------------------------------------ */
+  --content-max-width: 1200px;
+  --z-sticky: 100;
+  --z-header: 200;
+  --z-sidebar: 300;
+  --z-modal: 500;
+}

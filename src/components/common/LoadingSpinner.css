@@ -1,0 +1,49 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - REUSABLE LOADING SPINNER STYLES
+   ========================================================================== */
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  gap: var(--space-3);
+  color: var(--text-secondary);
+}
+
+.loading-full-height {
+  min-height: 280px;
+  width: 100%;
+}
+
+.loading-spinner-icon {
+  animation: spinLoader 0.9s linear infinite;
+  color: var(--color-midnight);
+}
+
+.loading-sm .loading-spinner-icon {
+  color: var(--color-brass-dark);
+}
+
+.loading-lg .loading-spinner-icon {
+  color: var(--color-currant);
+}
+
+.loading-message {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+@keyframes spinLoader {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

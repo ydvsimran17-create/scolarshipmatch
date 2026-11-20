@@ -1,0 +1,110 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - DOCUMENTS PAGE STYLES
+   ========================================================================== */
+
+.documents-page-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-8) var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+@media (max-width: 1024px) {
+  .documents-page-container {
+    padding: var(--space-5) var(--space-5) var(--space-10);
+  }
+}
+
+@media (max-width: 640px) {
+  .documents-page-container {
+    padding: var(--space-4) var(--space-3) var(--space-8);
+  }
+}
+
+/* Header Card */
+.documents-header {
+  padding: var(--space-6) var(--space-8);
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    var(--color-plaster-light) 80%,
+    rgba(196, 159, 109, 0.1) 100%
+  );
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .documents-header {
+    padding: var(--space-5);
+  }
+}
+
+.header-info-cluster {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 720px;
+}
+
+.header-badges-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.documents-page-heading {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.documents-page-subtitle {
+  font-size: var(--font-size-sm);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.header-actions-cluster {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.btn-upload-prominent {
+  background-color: var(--color-currant);
+  border-color: var(--color-currant);
+  color: #ffffff;
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.btn-upload-prominent:hover {
+  background-color: var(--color-currant-dark);
+  border-color: var(--color-currant-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.reset-demo-btn {
+  font-size: var(--font-size-xs);
+  padding: 8px 12px;
+}

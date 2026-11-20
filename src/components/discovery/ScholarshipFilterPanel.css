@@ -1,0 +1,230 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - SCHOLARSHIP FILTER PANEL STYLES
+   ========================================================================== */
+
+.filter-sidebar-panel {
+  width: 290px;
+  flex-shrink: 0;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 0;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow: hidden;
+  align-self: flex-start;
+}
+
+/* Mobile Drawer Overlay */
+@media (max-width: 1023px) {
+  .filter-sidebar-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 320px;
+    max-width: 88vw;
+    height: 100vh;
+    max-height: 100vh;
+    z-index: 350;
+    border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal);
+    box-shadow: 12px 0 32px rgba(15, 20, 28, 0.35);
+  }
+
+  .filter-sidebar-panel.mobile-open {
+    transform: translateX(0);
+  }
+
+  .filter-mobile-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 20, 28, 0.55);
+    backdrop-filter: blur(2px);
+    z-index: 340;
+    animation: fadeIn 0.15s ease-out;
+  }
+}
+
+@media (min-width: 1024px) {
+  .filter-mobile-backdrop {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PANEL HEADER
+   -------------------------------------------------------------------------- */
+.filter-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--color-plaster-light);
+  border-bottom: 1px solid var(--border-color-subtle);
+  flex-shrink: 0;
+}
+
+.filter-title-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.filter-header-icon {
+  color: var(--color-midnight);
+}
+
+.filter-panel-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+}
+
+.filter-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.btn-clear-filters {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: var(--color-currant);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: var(--radius-xs);
+  transition: background-color var(--transition-fast);
+}
+
+.btn-clear-filters:hover {
+  background-color: var(--color-currant-subtle);
+}
+
+.filter-mobile-close-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+}
+
+@media (max-width: 1023px) {
+  .filter-mobile-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FILTER GROUPS & SCROLLABLE BODY
+   -------------------------------------------------------------------------- */
+.filter-sections-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.filter-group-label {
+  font-family: var(--font-body);
+  font-size: 0.775rem;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-midnight);
+}
+
+.filter-select {
+  padding: 0.55rem 0.75rem;
+  font-size: var(--font-size-xs);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-plaster-light);
+}
+
+.filter-select:focus {
+  background-color: #ffffff;
+}
+
+.filter-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  background-color: var(--color-plaster-light);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-chip:hover {
+  border-color: var(--color-brass);
+  color: var(--color-midnight);
+  background-color: #ffffff;
+}
+
+.filter-chip.selected {
+  background-color: var(--color-midnight);
+  color: #ffffff;
+  border-color: var(--color-midnight);
+  font-weight: var(--font-weight-semibold);
+  box-shadow: 0 1px 3px rgba(35, 62, 101, 0.18);
+}
+
+.chip-check {
+  color: var(--color-brass-light);
+}
+
+.filter-divider {
+  border: none;
+  height: 1px;
+  background-color: var(--border-color-subtle);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   PANEL FOOTER (Mobile Apply Button)
+   -------------------------------------------------------------------------- */
+.filter-panel-footer {
+  display: none;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-plaster-light);
+  border-top: 1px solid var(--border-color-subtle);
+}
+
+@media (max-width: 1023px) {
+  .filter-panel-footer {
+    display: block;
+  }
+}

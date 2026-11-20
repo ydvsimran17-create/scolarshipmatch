@@ -1,0 +1,165 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - APPLICATION FILTERS COMPONENT
+   ========================================================================== */
+
+.application-filters-card {
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.filters-main-row {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.8fr) repeat(3, minmax(160px, 1fr));
+  gap: var(--space-3);
+  align-items: end;
+}
+
+@media (max-width: 1024px) {
+  .filters-main-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .filters-main-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Search Box */
+.filter-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-box-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.filter-search-input {
+  width: 100%;
+  height: 42px;
+  padding: 0 34px 0 38px;
+  background-color: var(--color-plaster-light);
+  border: 1px solid var(--color-linen);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.filter-search-input:focus {
+  outline: none;
+  border-color: var(--color-midnight);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px var(--color-midnight-subtle);
+}
+
+.clear-search-pill {
+  position: absolute;
+  right: 10px;
+  background: var(--color-linen-dark);
+  color: #ffffff;
+  border: none;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Select Control Groups */
+.filter-select-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filter-select-label {
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+}
+
+.inline-icon {
+  vertical-align: -1px;
+}
+
+.custom-select-wrapper {
+  position: relative;
+}
+
+.filter-select-control {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  background-color: var(--color-plaster-light);
+  border: 1px solid var(--color-linen);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-select-control:focus {
+  outline: none;
+  border-color: var(--color-midnight);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px var(--color-midnight-subtle);
+}
+
+/* Bottom status subbar */
+.filters-status-subbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-2);
+  border-top: 1px dashed var(--color-linen);
+}
+
+.results-count-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-secondary);
+}
+
+.count-icon {
+  color: var(--color-brass-dark);
+}
+
+.clear-all-filters-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: var(--color-currant);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.clear-all-filters-btn:hover {
+  text-decoration: underline;
+  background-color: var(--color-currant-subtle);
+}

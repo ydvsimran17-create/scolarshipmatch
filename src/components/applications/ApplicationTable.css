@@ -1,0 +1,228 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - APPLICATION TRACKING TABLE
+   ========================================================================== */
+
+.application-table-card {
+  padding: 0;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.application-tracking-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 860px; /* guarantees comfortable columns */
+}
+
+/* Table Header */
+.application-tracking-table th {
+  background-color: var(--color-plaster-light);
+  color: var(--color-midnight);
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-4) var(--space-4);
+  border-bottom: 1px solid var(--color-linen);
+  white-space: nowrap;
+}
+
+.application-tracking-table th.text-right {
+  text-align: right;
+}
+
+/* Table Body */
+.app-table-row {
+  border-bottom: 1px solid var(--color-linen-light);
+  transition: background-color var(--transition-fast);
+}
+
+.app-table-row:hover {
+  background-color: rgba(196, 159, 109, 0.05);
+}
+
+.app-table-row:last-child {
+  border-bottom: none;
+}
+
+.application-tracking-table td {
+  padding: var(--space-4) var(--space-4);
+  vertical-align: middle;
+}
+
+/* Scholarship column */
+.cell-scholarship-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 320px;
+}
+
+.app-scheme-title {
+  color: var(--color-midnight);
+  line-height: 1.35;
+}
+
+.app-meta-tag-line {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.demo-ref-tag {
+  font-family: monospace;
+  font-size: 0.72rem;
+  background-color: var(--color-plaster);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-linen);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Provider column */
+.cell-provider-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  max-width: 220px;
+  line-height: 1.3;
+}
+
+.cell-provider-icon {
+  color: var(--color-brass-dark);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Date column */
+.cell-date-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  color: var(--text-primary);
+}
+
+.cell-date-icon {
+  color: var(--text-muted);
+}
+
+/* Amount column */
+.cell-amount-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.cell-rupee-icon {
+  color: var(--color-currant);
+}
+
+/* Status Badges */
+.app-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* 1. Submitted: Midnight Indigo subtle */
+.badge-status-submitted {
+  background-color: var(--color-midnight-subtle);
+  color: var(--color-midnight);
+  border: 1px solid var(--color-midnight-border);
+}
+
+/* 2. Under Review: Antique Brass subtle */
+.badge-status-review {
+  background-color: var(--color-brass-subtle);
+  color: var(--color-brass-dark);
+  border: 1px solid var(--color-brass-border);
+}
+
+/* 3. Action Required: Currant subtle */
+.badge-status-action {
+  background-color: var(--color-currant-subtle);
+  color: var(--color-currant);
+  border: 1px solid var(--color-currant-border);
+  font-weight: var(--font-weight-bold);
+  animation: pulseSubtle 2s infinite ease-in-out;
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(145, 41, 48, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 3px rgba(145, 41, 48, 0.15);
+  }
+}
+
+/* 4. Approved: Emerald / Brass success */
+.badge-status-approved {
+  background-color: rgba(34, 139, 34, 0.1);
+  color: #1e7e34;
+  border: 1px solid rgba(34, 139, 34, 0.3);
+}
+
+/* 5. Rejected: Neutral slate */
+.badge-status-rejected {
+  background-color: rgba(108, 117, 125, 0.12);
+  color: #495057;
+  border: 1px solid rgba(108, 117, 125, 0.25);
+}
+
+.badge-status-neutral {
+  background-color: var(--color-linen-light);
+  color: var(--color-midnight);
+  border: 1px solid var(--color-linen);
+}
+
+/* Action button */
+.app-view-btn {
+  padding: 6px 12px;
+  white-space: nowrap;
+  font-size: var(--font-size-xs);
+  transition: all var(--transition-fast);
+}
+
+.app-view-btn:hover {
+  background-color: var(--color-midnight);
+  color: #ffffff;
+  border-color: var(--color-midnight);
+}
+
+/* Table Footer Bar */
+.table-footer-bar {
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-plaster-light);
+  border-top: 1px solid var(--color-linen);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.footer-demo-icon {
+  color: var(--color-brass-dark);
+  flex-shrink: 0;
+}

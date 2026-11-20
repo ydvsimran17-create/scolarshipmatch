@@ -1,0 +1,57 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - APPLICATION EMPTY STATE COMPONENT
+   ========================================================================== */
+
+.application-empty-card {
+  padding: var(--space-10) var(--space-6);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: 580px;
+  margin: var(--space-8) auto;
+  background-color: var(--surface-card);
+  border: 1px dashed var(--color-linen-dark);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.empty-state-crest {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-brass-subtle);
+  border: 2px solid var(--color-brass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-midnight);
+}
+
+.empty-state-icon {
+  color: var(--color-currant);
+}
+
+.empty-state-heading {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  margin: 0;
+}
+
+.empty-state-subtext {
+  margin: 0;
+  max-width: 460px;
+  line-height: 1.5;
+}
+
+.empty-state-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--space-2);
+}
