@@ -250,3 +250,28 @@ npm run build
 # Preview production build locally
 npm run preview
 ```
+
+---
+
+## 7. Backend Server & Database Setup
+
+The backend service runs Node.js, Express, PostgreSQL with Sequelize, JWT authentication, and Google Gemini AI integration.
+
+### Setup Instructions
+1. Install backend dependencies (if running server):
+   ```bash
+   node server.js
+   ```
+2. Configure database credentials in `.env`:
+   - `DATABASE_URL`: PostgreSQL connection string (`postgres://user:password@localhost:5432/scholarshipmatch`)
+   - `JWT_SECRET`: Random secure string
+   - `GEMINI_API_KEY`: API key from Google AI Studio
+3. Initialize tables:
+   ```bash
+   node src/config/syncDb.js
+   ```
+4. Seed scholarship programs and embeddings:
+   ```bash
+   node src/seed.js
+   ```
+5. Health check endpoint: `http://localhost:5000/health`
