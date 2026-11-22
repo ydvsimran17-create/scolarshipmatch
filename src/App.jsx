@@ -7,11 +7,15 @@ import MyApplications from './pages/MyApplications'
 import Documents from './pages/Documents'
 import StudentProfile from './pages/StudentProfile'
 import AiEssayAssistant from './pages/AiEssayAssistant'
+import Login from './pages/Login'
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Login / Register: outside the dashboard layout, so no sidebar */}
+        <Route path="/login" element={<Login />} />
+
         <Route path="/" element={<DashboardLayout />}>
           {/* 1. Main Student Dashboard Route */}
           <Route index element={<Dashboard />} />

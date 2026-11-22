@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import { filterOptions } from '../data/scholarshipsDiscoveryData'
 import scholarshipService from '../services/scholarshipService'
+import authService from '../services/authService'
 import ScholarshipFilterPanel from '../components/discovery/ScholarshipFilterPanel'
 import DiscoveryScholarshipCard from '../components/discovery/DiscoveryScholarshipCard'
 import './FindScholarships.css'
@@ -41,6 +42,9 @@ export default function FindScholarships() {
   const [error, setError] = useState(null)
   const [reloadKey, setReloadKey] = useState(0)
 
+  // Personal match scores (id -> percentage), only available when the student is logged in
+  const [matchScores, setMatchScores] = useState({})
+
   // Local storage persisted bookmarks
   const [bookmarkedIds, setBookmarkedIds] = useState(() => {
     try {
@@ -57,6 +61,30 @@ export default function FindScholarships() {
       .getScholarships()
       .then((data) => setTotalCount(data.length))
       .catch(() => {})
+  }, [reloadKey])
+
+  // If the student is logged in, load their personal match scores
+  useEffect(() => {
+    if (!authService.isAuthenticated()) return
+    let cancelled = false
+
+    scholarshipService
+      .getRecommendedScholarships()
+      .then((data) => {
+        if (cancelled) return
+        const scores = {}
+        data.forEach((s) => {
+          scores[s.id] = s.eligibilityMatch
+        })
+        setMatchScores(scores)
+      })
+      .catch(() => {
+        // Not logged in properly or no profile yet: keep showing the public list
+      })
+
+    return () => {
+      cancelled = true
+    }
   }, [reloadKey])
 
   // Load the (filtered and sorted) scholarships whenever search, filters or sort change
@@ -142,12 +170,28 @@ export default function FindScholarships() {
     return count
   }, [filters, showSavedOnly, searchQuery])
 
-  // Search, filters and sorting are done by the service/backend.
-  // Only the "saved bookmarks" filter is applied here, because bookmarks live in this browser.
+  // Search, filters and "sort by amount/deadline" are done by the service/backend.
+  // Here we add the personal match scores, apply the saved-bookmarks filter
+  // (bookmarks live in this browser), and sort by match when asked.
   const filteredAndSortedScholarships = useMemo(() => {
-    if (!showSavedOnly) return scholarships
-    return scholarships.filter((item) => bookmarkedIds.includes(item.id))
-  }, [scholarships, showSavedOnly, bookmarkedIds])
+    const hasScores = Object.keys(matchScores).length > 0
+
+    let list = hasScores
+      ? scholarships.map((s) =>
+          matchScores[s.id] !== undefined ? { ...s, eligibilityMatch: matchScores[s.id] } : s
+        )
+      : scholarships
+
+    if (showSavedOnly) {
+      list = list.filter((item) => bookmarkedIds.includes(item.id))
+    }
+
+    if (hasScores && sortBy === 'match') {
+      list = [...list].sort((a, b) => b.eligibilityMatch - a.eligibilityMatch)
+    }
+
+    return list
+  }, [scholarships, matchScores, showSavedOnly, bookmarkedIds, sortBy])
 
   return (
     <div className="discovery-page-wrapper">
