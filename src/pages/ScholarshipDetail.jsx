@@ -1,7 +1,7 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft, ShieldAlert } from 'lucide-react'
-import { discoveryScholarships } from '../data/scholarshipsDiscoveryData'
+import scholarshipService from '../services/scholarshipService'
 import ScholarshipHeader from '../components/detail/ScholarshipHeader'
 import AiEligibilityMatchCard from '../components/detail/AiEligibilityMatchCard'
 import AboutScholarship from '../components/detail/AboutScholarship'
@@ -18,21 +18,42 @@ export default function ScholarshipDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
 
+  // The scholarship is loaded through the service layer (backend, or demo data if no backend)
+  const [scholarship, setScholarship] = useState(null)
+  const [loading, setLoading] = useState(true)
+
   // Scroll to top upon navigation to scholarship
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [id])
 
-  // Locate matching scholarship data
-  const scholarship = useMemo(() => {
-    return discoveryScholarships.find((item) => item.id === id)
+  // Load the scholarship whenever the id in the URL changes
+  useEffect(() => {
+    let cancelled = false
+    setLoading(true)
+
+    scholarshipService
+      .getScholarshipById(id)
+      .then((data) => {
+        if (!cancelled) setScholarship(data || null)
+      })
+      .catch(() => {
+        if (!cancelled) setScholarship(null)
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false)
+      })
+
+    return () => {
+      cancelled = true
+    }
   }, [id])
 
   // Bookmarking state synchronized with localStorage
   const [isBookmarked, setIsBookmarked] = useState(() => {
     try {
       const saved = localStorage.getItem('scholarship_bookmarks')
-      const parsed = saved ? JSON.parse(saved) : ['csss-scholarship']
+      const parsed = saved ? JSON.parse(saved) : []
       return parsed.includes(id)
     } catch {
       return false
@@ -48,7 +69,7 @@ export default function ScholarshipDetail() {
       const next = !prev
       try {
         const saved = localStorage.getItem('scholarship_bookmarks')
-        let parsed = saved ? JSON.parse(saved) : ['csss-scholarship']
+        let parsed = saved ? JSON.parse(saved) : []
         if (next) {
           if (!parsed.includes(id)) parsed.push(id)
         } else {
@@ -60,6 +81,17 @@ export default function ScholarshipDetail() {
       }
       return next
     })
+  }
+
+  // Still loading
+  if (loading) {
+    return (
+      <div className="scholarship-detail-page">
+        <div className="not-found-card card">
+          <p className="text-secondary text-sm">Loading scholarship&hellip;</p>
+        </div>
+      </div>
+    )
   }
 
   // Handle scholarship not found

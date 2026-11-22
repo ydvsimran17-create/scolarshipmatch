@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import {
   Search,
@@ -11,10 +11,8 @@ import {
   RotateCcw,
   Info,
 } from 'lucide-react'
-import {
-  discoveryScholarships,
-  filterOptions,
-} from '../data/scholarshipsDiscoveryData'
+import { filterOptions } from '../data/scholarshipsDiscoveryData'
+import scholarshipService from '../services/scholarshipService'
 import ScholarshipFilterPanel from '../components/discovery/ScholarshipFilterPanel'
 import DiscoveryScholarshipCard from '../components/discovery/DiscoveryScholarshipCard'
 import './FindScholarships.css'
@@ -36,15 +34,53 @@ export default function FindScholarships() {
   const [showSavedOnly, setShowSavedOnly] = useState(false)
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
 
+  // Scholarships loaded through the service layer (backend, or demo data if no backend)
+  const [scholarships, setScholarships] = useState([])
+  const [totalCount, setTotalCount] = useState(0)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [reloadKey, setReloadKey] = useState(0)
+
   // Local storage persisted bookmarks
   const [bookmarkedIds, setBookmarkedIds] = useState(() => {
     try {
       const saved = localStorage.getItem('scholarship_bookmarks')
-      return saved ? JSON.parse(saved) : ['csss-scholarship']
+      return saved ? JSON.parse(saved) : []
     } catch {
-      return ['csss-scholarship']
+      return []
     }
   })
+
+  // Total number of scholarships (without any filter), loaded once
+  useEffect(() => {
+    scholarshipService
+      .getScholarships()
+      .then((data) => setTotalCount(data.length))
+      .catch(() => {})
+  }, [reloadKey])
+
+  // Load the (filtered and sorted) scholarships whenever search, filters or sort change
+  useEffect(() => {
+    let cancelled = false
+    setLoading(true)
+    setError(null)
+
+    scholarshipService
+      .getScholarships({ search: searchQuery, ...filters }, sortBy)
+      .then((data) => {
+        if (!cancelled) setScholarships(data)
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err?.message || 'Could not load scholarships.')
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false)
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [searchQuery, filters, sortBy, reloadKey])
 
   // Update search query via URL search params (no effect needed)
   const handleSearchChange = (val) => {
@@ -106,110 +142,12 @@ export default function FindScholarships() {
     return count
   }, [filters, showSavedOnly, searchQuery])
 
-  // Filter and sort scholarships
+  // Search, filters and sorting are done by the service/backend.
+  // Only the "saved bookmarks" filter is applied here, because bookmarks live in this browser.
   const filteredAndSortedScholarships = useMemo(() => {
-    return discoveryScholarships
-      .filter((item) => {
-        // Search query filter (name, provider, description, keywords)
-        if (searchQuery.trim()) {
-          const q = searchQuery.toLowerCase()
-          const matchName = item.name.toLowerCase().includes(q)
-          const matchProvider = item.provider.toLowerCase().includes(q)
-          const matchDesc = item.shortDescription.toLowerCase().includes(q)
-          const matchKeywords = item.keywords.some((k) =>
-            k.toLowerCase().includes(q)
-          )
-          if (!matchName && !matchProvider && !matchDesc && !matchKeywords) {
-            return false
-          }
-        }
-
-        // Education Level
-        if (
-          filters.educationLevel !== 'All' &&
-          !item.educationLevel.includes(filters.educationLevel)
-        ) {
-          return false
-        }
-
-        // Category (Caste / Community)
-        if (
-          filters.category !== 'All' &&
-          !item.eligibleCategories.includes(filters.category)
-        ) {
-          return false
-        }
-
-        // State filter
-        if (filters.state !== 'All') {
-          if (filters.state === 'All-India') {
-            if (item.state !== 'All-India') return false
-          } else {
-            if (item.state !== filters.state && item.state !== 'All-India') {
-              return false
-            }
-          }
-        }
-
-        // Annual Family Income Range
-        if (filters.incomeRange !== 'All') {
-          if (filters.incomeRange === 'Under ₹2.5 Lakhs') {
-            if (
-              item.incomeLimit !== 'Under ₹2.5 Lakhs' &&
-              item.incomeLimit !== 'No Income Limit'
-            ) {
-              return false
-            }
-          } else if (filters.incomeRange === 'Under ₹4.5 Lakhs') {
-            if (
-              item.incomeLimit !== 'Under ₹2.5 Lakhs' &&
-              item.incomeLimit !== 'Under ₹4.5 Lakhs' &&
-              item.incomeLimit !== 'No Income Limit'
-            ) {
-              return false
-            }
-          } else if (filters.incomeRange === 'Under ₹8.0 Lakhs') {
-            if (
-              item.incomeLimit !== 'Under ₹2.5 Lakhs' &&
-              item.incomeLimit !== 'Under ₹4.5 Lakhs' &&
-              item.incomeLimit !== 'Under ₹8.0 Lakhs' &&
-              item.incomeLimit !== 'No Income Limit'
-            ) {
-              return false
-            }
-          } else if (filters.incomeRange === 'No Income Limit') {
-            if (item.incomeLimit !== 'No Income Limit') return false
-          }
-        }
-
-        // Scholarship Type
-        if (
-          filters.scholarshipType !== 'All' &&
-          !item.scholarshipType.includes(filters.scholarshipType)
-        ) {
-          return false
-        }
-
-        // Saved Only toggle
-        if (showSavedOnly && !bookmarkedIds.includes(item.id)) {
-          return false
-        }
-
-        return true
-      })
-      .sort((a, b) => {
-        if (sortBy === 'match') {
-          return b.eligibilityMatch - a.eligibilityMatch
-        }
-        if (sortBy === 'amount') {
-          return b.amountValue - a.amountValue
-        }
-        if (sortBy === 'deadline') {
-          return new Date(a.deadlineDate) - new Date(b.deadlineDate)
-        }
-        return 0
-      })
-  }, [searchQuery, filters, showSavedOnly, bookmarkedIds, sortBy])
+    if (!showSavedOnly) return scholarships
+    return scholarships.filter((item) => bookmarkedIds.includes(item.id))
+  }, [scholarships, showSavedOnly, bookmarkedIds])
 
   return (
     <div className="discovery-page-wrapper">
@@ -221,7 +159,7 @@ export default function FindScholarships() {
               <Sparkles size={13} /> AI-Powered Discovery
             </span>
             <span className="text-xs text-muted">
-              {discoveryScholarships.length} Verified Scheme Profiles (Demo)
+              {totalCount} Scholarship Profiles (Sample Data)
             </span>
           </div>
 
@@ -300,7 +238,7 @@ export default function FindScholarships() {
 
               <span className="results-count-text text-sm">
                 Showing <strong>{filteredAndSortedScholarships.length}</strong> of{' '}
-                {discoveryScholarships.length} opportunities
+                {totalCount} opportunities
               </span>
             </div>
 
@@ -433,8 +371,24 @@ export default function FindScholarships() {
             </div>
           )}
 
-          {/* Cards List or Empty State */}
-          {filteredAndSortedScholarships.length > 0 ? (
+          {/* Loading, error, cards list or empty state */}
+          {loading ? (
+            <div className="discovery-empty-state card">
+              <p className="text-sm text-secondary">Loading scholarships&hellip;</p>
+            </div>
+          ) : error ? (
+            <div className="discovery-empty-state card">
+              <h3 className="empty-state-title">Could not load scholarships</h3>
+              <p className="empty-state-subtitle text-sm text-secondary">{error}</p>
+              <button
+                type="button"
+                className="btn btn-primary btn-sm empty-reset-btn"
+                onClick={() => setReloadKey((k) => k + 1)}
+              >
+                <RotateCcw size={14} /> Try again
+              </button>
+            </div>
+          ) : filteredAndSortedScholarships.length > 0 ? (
             <div className="discovery-cards-grid">
               {filteredAndSortedScholarships.map((scholarship) => (
                 <DiscoveryScholarshipCard
