@@ -255,7 +255,19 @@ npm run preview
 
 ## 7. Backend Server & Database Setup
 
-The backend service runs Node.js, Express, PostgreSQL with Sequelize, JWT authentication, and Google Gemini AI integration.
+The backend (Node.js, Express, PostgreSQL with Sequelize, JWT, Google Gemini) lives in this same repository. The full setup guide, API reference and known limitations are in [BACKEND.md](./BACKEND.md).
+
+Quick start:
+
+```bash
+npm install
+node src/config/syncDb.js   # create the database tables
+node src/seed.js            # load scholarships and their AI embeddings
+npm run server              # backend on http://localhost:5000
+npm run dev                 # frontend on http://localhost:5173
+```
+
+Before starting, create a `.env` file from `.env.example`. The frontend and the backend share this one file, so it needs `DATABASE_URL`, `JWT_SECRET`, `GEMINI_API_KEY` and also `VITE_API_BASE_URL=http://localhost:5000/api`. Health check: `http://localhost:5000/health`
 
 ### Setup Instructions
 1. Install backend dependencies (if running server):
