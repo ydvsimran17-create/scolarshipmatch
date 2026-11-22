@@ -1,0 +1,247 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - ESSAY EDITOR STYLES
+   ========================================================================== */
+
+.essay-editor-card {
+  padding: var(--space-6);
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.editor-top-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-linen);
+  padding-bottom: var(--space-3);
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.editor-title-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.editor-crest-icon {
+  color: var(--color-currant);
+}
+
+.editor-title-text {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  margin: 0;
+}
+
+.editor-top-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.saved-drafts-btn {
+  font-size: var(--font-size-xs);
+  gap: 6px;
+}
+
+.copy-btn {
+  font-size: var(--font-size-xs);
+  gap: 6px;
+}
+
+.copied-icon {
+  color: #1e7e34;
+}
+
+/* Demo Notice */
+.editor-demo-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background-color: rgba(145, 41, 48, 0.05);
+  border: 1px solid var(--color-currant-border);
+  border-radius: var(--radius-md);
+}
+
+.banner-alert-icon {
+  color: var(--color-currant);
+  flex-shrink: 0;
+}
+
+/* Textarea Container */
+.editor-textarea-container {
+  position: relative;
+  width: 100%;
+}
+
+.editor-generating-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  z-index: 10;
+  border-radius: var(--radius-lg);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.generating-pulse-crest {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-brass-subtle);
+  border: 2px solid var(--color-brass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-currant);
+}
+
+.spinning-sparkle {
+  animation: spinSlow 3s linear infinite;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.essay-main-textarea {
+  width: 100%;
+  padding: var(--space-4);
+  background-color: var(--color-plaster-light);
+  border: 1px solid var(--color-linen);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  line-height: 1.65;
+  resize: vertical;
+  min-height: 320px;
+  transition: all var(--transition-fast);
+}
+
+.essay-main-textarea:focus {
+  outline: none;
+  border-color: var(--color-midnight);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px var(--color-midnight-subtle);
+}
+
+.essay-main-textarea.over-limit {
+  border-color: var(--color-currant);
+}
+
+/* Metrics Strip */
+.editor-metrics-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metrics-counts-cluster {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.word-count-badge {
+  color: var(--color-midnight);
+}
+
+.word-limit-indicator {
+  color: var(--text-muted);
+}
+
+.word-limit-indicator.limit-exceeded {
+  color: var(--color-currant);
+  font-weight: var(--font-weight-bold);
+}
+
+.metrics-progress-bar {
+  width: 100%;
+  height: 5px;
+  background-color: var(--color-plaster-dark);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.metrics-progress-fill {
+  height: 100%;
+  background: var(--color-midnight);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease-out;
+}
+
+.metrics-progress-fill.fill-exceeded {
+  background: var(--color-currant);
+}
+
+/* Actions Strip */
+.editor-action-buttons-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding-top: var(--space-2);
+}
+
+.primary-generate-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.generate-main-btn {
+  background-color: var(--color-currant);
+  border-color: var(--color-currant);
+  color: #ffffff;
+  font-weight: var(--font-weight-bold);
+  padding: 8px 18px;
+  transition: all var(--transition-fast);
+}
+
+.generate-main-btn:hover {
+  background-color: var(--color-currant-dark);
+}
+
+.text-modifiers-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.action-tool-btn {
+  font-size: var(--font-size-xs);
+  padding: 6px 12px;
+}
+
+.save-draft-btn {
+  background-color: var(--color-midnight);
+  color: #ffffff;
+  font-weight: var(--font-weight-bold);
+  padding: 6px 14px;
+}
+
+.save-draft-btn:hover {
+  background-color: var(--color-midnight-light);
+}

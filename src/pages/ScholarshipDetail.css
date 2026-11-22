@@ -1,0 +1,93 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - SCHOLARSHIP DETAILS PAGE LAYOUT
+   ========================================================================== */
+
+.scholarship-detail-page {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-8) var(--space-12);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1024px) {
+  .scholarship-detail-page {
+    padding: var(--space-5) var(--space-5) var(--space-10);
+  }
+}
+
+@media (max-width: 640px) {
+  .scholarship-detail-page {
+    padding: var(--space-4) var(--space-3) var(--space-8);
+  }
+}
+
+/* 2-Column Responsive Layout */
+.detail-layout-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (max-width: 1080px) {
+  .detail-layout-grid {
+    grid-template-columns: minmax(0, 1fr) 310px;
+    gap: var(--space-5);
+  }
+}
+
+@media (max-width: 960px) {
+  .detail-layout-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  /* On smaller screens, sidebar wraps below or above */
+  .detail-sidebar-wrap {
+    order: -1; /* Place action card above or prominently */
+    margin-bottom: var(--space-2);
+  }
+}
+
+/* Left Column: Flow of Detail Cards */
+.detail-main-flow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  min-width: 0; /* Prevents flex children blowout */
+}
+
+/* Right Column Wrapper */
+.detail-sidebar-wrap {
+  position: relative;
+  min-width: 0;
+}
+
+/* Not Found Card */
+.not-found-card {
+  padding: var(--space-10) var(--space-6);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: 520px;
+  margin: var(--space-12) auto;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.not-found-card h2 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-2xl);
+  color: var(--color-midnight);
+  margin: 0;
+}
+
+.not-found-card p {
+  margin: 0;
+}

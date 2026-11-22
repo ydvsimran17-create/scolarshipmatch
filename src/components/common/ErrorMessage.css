@@ -1,0 +1,60 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - REUSABLE ERROR MESSAGE STYLES
+   ========================================================================== */
+
+.error-state-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background-color: var(--color-currant-subtle);
+  border: 1px solid var(--color-currant-border);
+  border-radius: var(--radius-lg);
+  margin: var(--space-4) 0;
+}
+
+.error-icon-wrapper {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background-color: rgba(145, 41, 48, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-currant);
+}
+
+.error-content {
+  flex: 1;
+}
+
+.error-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-currant);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.error-message {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin: 0 0 var(--space-3) 0;
+}
+
+.error-retry-btn {
+  color: var(--color-currant);
+  border-color: var(--color-currant);
+  background-color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.error-retry-btn:hover {
+  background-color: var(--color-currant);
+  color: #ffffff;
+}

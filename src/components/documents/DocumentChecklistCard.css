@@ -1,0 +1,184 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - DOCUMENT CHECKLIST CARD STYLES
+   ========================================================================== */
+
+.document-checklist-card {
+  padding: var(--space-6);
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.checklist-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.checklist-title-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.checklist-crest-icon {
+  color: var(--color-currant);
+  flex-shrink: 0;
+}
+
+.checklist-heading {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  margin: 0;
+}
+
+.checklist-badge-counter {
+  font-size: var(--font-size-xs);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+/* Progress Track */
+.checklist-progress-track {
+  width: 100%;
+  height: 6px;
+  background-color: var(--color-plaster-dark);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.checklist-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-brass) 0%, var(--color-currant) 100%);
+  border-radius: var(--radius-full);
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Controls row */
+.checklist-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.checklist-controls-row p {
+  margin: 0;
+  max-width: 650px;
+}
+
+.checklist-batch-buttons {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.batch-btn {
+  background: none;
+  border: none;
+  color: var(--color-midnight);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.batch-btn:hover {
+  color: var(--color-currant);
+  text-decoration: underline;
+}
+
+.dot-sep {
+  color: var(--color-linen-dark);
+}
+
+/* Items Grid */
+.checklist-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-3);
+}
+
+.doc-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-plaster-light);
+  border: 1px solid var(--color-linen);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-fast);
+}
+
+.doc-check-item:hover {
+  background-color: #ffffff;
+  border-color: var(--color-brass);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.doc-check-item.item-checked {
+  background-color: rgba(196, 159, 109, 0.08);
+  border-color: var(--color-brass-border);
+}
+
+.check-box-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.box-icon.checked {
+  color: var(--color-currant);
+}
+
+.box-icon.unchecked {
+  color: var(--text-muted);
+}
+
+.check-text-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.check-item-label {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-midnight);
+  line-height: 1.35;
+}
+
+.check-item-label.label-checked {
+  color: var(--text-primary);
+}
+
+.check-item-desc {
+  line-height: 1.3;
+}
+
+/* Advisory Box */
+.checklist-advisory-box {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-plaster);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-brass);
+}
+
+.advisory-icon {
+  color: var(--color-brass-dark);
+  flex-shrink: 0;
+}

@@ -1,0 +1,166 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - SAVED DRAFTS MODAL STYLES
+   ========================================================================== */
+
+.saved-drafts-dialog {
+  width: 100%;
+  max-width: 640px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-height: 88vh;
+  overflow-y: auto;
+  animation: modalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.drafts-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-linen);
+  padding-bottom: var(--space-3);
+}
+
+.drafts-title-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.drafts-crest-icon {
+  color: var(--color-currant);
+}
+
+.drafts-modal-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  margin: 0;
+}
+
+.drafts-modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.drafts-list-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.draft-card-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-plaster-light);
+  border: 1px solid var(--color-linen);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+}
+
+.draft-card-item:hover {
+  background-color: #ffffff;
+  border-color: var(--color-brass);
+  box-shadow: var(--shadow-sm);
+}
+
+.draft-card-meta-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.draft-words-count {
+  margin-left: auto;
+}
+
+.draft-item-title {
+  color: var(--color-midnight);
+  margin: 0;
+}
+
+.draft-scheme-name {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.draft-preview-snippet {
+  margin: 0;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.draft-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed var(--color-linen);
+  padding-top: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.draft-date-stamp {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.draft-card-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.draft-delete-btn {
+  color: var(--text-muted);
+  padding: 6px;
+}
+
+.draft-delete-btn:hover {
+  color: var(--color-currant);
+  background-color: var(--color-currant-subtle);
+}
+
+.draft-load-btn {
+  font-size: var(--font-size-xs);
+  padding: 5px 12px;
+}
+
+/* Empty State */
+.drafts-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--space-2);
+  padding: var(--space-8) var(--space-4);
+}
+
+.empty-inbox-icon {
+  color: var(--color-brass);
+}
+
+.drafts-empty-state p {
+  margin: 0;
+  max-width: 380px;
+}
+
+.drafts-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-linen);
+  padding-top: var(--space-3);
+}

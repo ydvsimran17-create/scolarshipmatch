@@ -1,0 +1,229 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - RIGHT-SIDE ACTION CARD COMPONENT
+   ========================================================================== */
+
+.right-action-panel {
+  position: relative;
+  width: 100%;
+}
+
+.sticky-action-card {
+  position: sticky;
+  top: var(--space-6);
+  padding: var(--space-6);
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.action-card-amount-header {
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-linen);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.action-amount-caption {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-weight: var(--font-weight-semibold);
+}
+
+.action-amount-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-midnight);
+}
+
+.action-rupee-icon {
+  color: var(--color-currant);
+}
+
+.action-amount-number {
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  line-height: 1.1;
+}
+
+.action-pill-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+/* Button container */
+.action-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.action-main-btn {
+  width: 100%;
+  justify-content: center;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.btn-applied {
+  background-color: var(--color-currant) !important;
+  color: var(--color-white) !important;
+  border-color: var(--color-currant) !important;
+}
+
+.action-secondary-btn {
+  width: 100%;
+  justify-content: center;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+  gap: var(--space-2);
+}
+
+.action-secondary-btn.is-saved {
+  border-color: var(--color-brass);
+  color: var(--color-brass-dark);
+  background-color: var(--color-brass-subtle);
+}
+
+.bookmark-icon.filled {
+  fill: var(--color-brass);
+  color: var(--color-brass);
+}
+
+/* Meta attributes table */
+.action-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background-color: var(--color-plaster-light);
+  border: 1px solid var(--color-linen);
+  border-radius: var(--radius-lg);
+}
+
+.action-meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.meta-key {
+  flex-shrink: 0;
+}
+
+.meta-val {
+  text-align: right;
+  color: var(--color-midnight);
+}
+
+.inline-icon {
+  vertical-align: -1px;
+  color: var(--color-brass);
+}
+
+.action-card-divider {
+  border: 0;
+  border-top: 1px solid var(--color-linen);
+  margin: 0;
+}
+
+/* Essay assistant banner */
+.essay-assistant-callout {
+  padding: var(--space-4);
+  background-color: rgba(35, 62, 101, 0.04);
+  border: 1px dashed var(--color-midnight-border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.essay-callout-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.callout-icon {
+  color: var(--color-midnight);
+}
+
+.callout-title {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  margin: 0;
+}
+
+.callout-desc {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.callout-link {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-currant);
+  text-decoration: none;
+  margin-top: 2px;
+  transition: color var(--transition-fast);
+}
+
+.callout-link:hover {
+  text-decoration: underline;
+  color: var(--color-currant-dark);
+}
+
+/* Secondary footer links */
+.action-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.share-link-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--transition-fast);
+}
+
+.share-link-btn:hover {
+  color: var(--color-midnight);
+}
+
+.share-icon {
+  vertical-align: -1px;
+}
+
+.return-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-midnight);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.return-link:hover {
+  color: var(--color-currant);
+  text-decoration: underline;
+}

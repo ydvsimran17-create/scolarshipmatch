@@ -1,0 +1,142 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - DOCUMENT OVERVIEW CARDS
+   ========================================================================== */
+
+.document-overview-section {
+  width: 100%;
+}
+
+.doc-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 1080px) {
+  .doc-overview-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .doc-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.doc-metric-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.doc-metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: transparent;
+  transition: background-color var(--transition-fast);
+}
+
+.doc-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-brass);
+}
+
+.doc-metric-card.card-filter-active {
+  border-color: var(--color-midnight);
+  box-shadow: var(--shadow-md);
+  background-color: #ffffff;
+}
+
+.doc-metric-card.card-filter-active::before {
+  background-color: var(--color-midnight);
+}
+
+/* Card Accents */
+.doc-metric-card.accent-midnight .metric-icon-frame {
+  background-color: var(--color-midnight-subtle);
+  color: var(--color-midnight);
+  border: 1px solid var(--color-midnight-border);
+}
+
+.doc-metric-card.accent-verified .metric-icon-frame {
+  background-color: rgba(30, 126, 52, 0.1);
+  color: #1e7e34;
+  border: 1px solid rgba(30, 126, 52, 0.25);
+}
+
+.doc-metric-card.accent-verified::before {
+  background-color: #1e7e34;
+}
+
+.doc-metric-card.accent-brass .metric-icon-frame {
+  background-color: var(--color-brass-subtle);
+  color: var(--color-brass-dark);
+  border: 1px solid var(--color-brass-border);
+}
+
+.doc-metric-card.accent-brass::before {
+  background-color: var(--color-brass);
+}
+
+.doc-metric-card.accent-currant .metric-icon-frame {
+  background-color: var(--color-currant-subtle);
+  color: var(--color-currant);
+  border: 1px solid var(--color-currant-border);
+}
+
+.doc-metric-card.accent-currant::before {
+  background-color: var(--color-currant);
+}
+
+.metric-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.metric-icon-frame {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metric-count-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.metric-big-number {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  line-height: 1;
+}
+
+.active-filter-badge {
+  font-size: 0.7rem;
+}
+
+.metric-label-subtext {
+  margin: 0;
+  line-height: 1.35;
+}

@@ -1,0 +1,88 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - DELETE CONFIRM MODAL STYLES
+   ========================================================================== */
+
+.delete-modal-dialog {
+  width: 100%;
+  max-width: 460px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  animation: modalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.delete-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-linen);
+  padding-bottom: var(--space-3);
+}
+
+.delete-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.delete-alert-icon {
+  color: var(--color-currant);
+}
+
+.delete-modal-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  margin: 0;
+}
+
+.delete-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.delete-prompt-text {
+  margin: 0;
+  line-height: 1.45;
+  color: var(--color-midnight);
+}
+
+.delete-item-summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-1) var(--space-3);
+  padding: var(--space-3);
+  background-color: var(--color-plaster-light);
+  border: 1px solid var(--color-linen);
+  border-radius: var(--radius-md);
+}
+
+.delete-warning-note {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.delete-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.delete-confirm-btn {
+  background-color: var(--color-currant);
+  color: #ffffff;
+  border-color: var(--color-currant);
+}
+
+.delete-confirm-btn:hover {
+  background-color: var(--color-currant-dark);
+}

@@ -1,0 +1,15 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - GLOBAL DESIGN SYSTEM ENTRY
+   ========================================================================== */
+
+/* 1. Design Tokens & Variables */
+@import './styles/variables.css';
+
+/* 2. Global Reset & Baseline Elements */
+@import './styles/reset.css';
+
+/* 3. Typography Styles & Academic Hierarchy */
+@import './styles/typography.css';
+
+/* 4. Common Design System Components & Utilities */
+@import './styles/components.css';

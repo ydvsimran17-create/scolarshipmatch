@@ -1,0 +1,120 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - STRUCTURED ELIGIBILITY STYLES
+   ========================================================================== */
+
+.eligibility-section-card {
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+  border-radius: var(--radius-xl);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.eligibility-blocks-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .eligibility-blocks-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.eligibility-block-item {
+  padding: var(--space-4);
+  background-color: var(--color-plaster-light);
+  border: 1px solid var(--border-color-subtle);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.eligibility-block-item:hover {
+  background-color: #ffffff;
+  border-color: var(--color-brass);
+}
+
+.block-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.block-icon-box {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-midnight-subtle);
+  color: var(--color-midnight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.block-title {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-midnight);
+  flex: 1;
+}
+
+.block-status-chip {
+  font-size: 0.65rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-brass-dark);
+  background-color: var(--color-brass-subtle);
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.block-desc {
+  line-height: var(--line-height-normal);
+}
+
+/* Additional notes */
+.additional-eligibility-notes {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-color-subtle);
+}
+
+.additional-notes-title {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.eligibility-bullet-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.bullet-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.bullet-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-midnight);
+  margin-top: 6px;
+  flex-shrink: 0;
+}

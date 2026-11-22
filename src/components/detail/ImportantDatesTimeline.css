@@ -1,0 +1,123 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - IMPORTANT DATES TIMELINE COMPONENT
+   ========================================================================== */
+
+.important-dates-card {
+  padding: var(--space-6);
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.milestones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+
+.milestone-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--color-plaster-light);
+  border: 1px solid var(--color-linen);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+}
+
+.milestone-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-brass);
+  box-shadow: var(--shadow-sm);
+}
+
+.milestone-card.milestone-highlight {
+  background: linear-gradient(
+    145deg,
+    var(--color-plaster-light) 0%,
+    rgba(196, 159, 109, 0.12) 100%
+  );
+  border-color: var(--color-brass-border);
+  position: relative;
+}
+
+.milestone-card.milestone-highlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--color-brass);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.milestone-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.milestone-icon-wrapper {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-plaster);
+  border: 1px solid var(--color-linen);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-midnight);
+}
+
+.milestone-highlight .milestone-icon-wrapper {
+  background-color: var(--color-brass-subtle);
+  color: var(--color-currant);
+  border-color: var(--color-brass-border);
+}
+
+.milestone-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.milestone-date-display {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-currant);
+  letter-spacing: -0.01em;
+}
+
+.milestone-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-midnight);
+  margin: 0;
+}
+
+.milestone-desc {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.dates-disclaimer-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-plaster);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-currant);
+}
+
+.dates-disclaimer-icon {
+  color: var(--color-currant);
+  flex-shrink: 0;
+  margin-top: 2px;
+}

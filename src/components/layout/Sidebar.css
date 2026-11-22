@@ -1,0 +1,373 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - SIDEBAR COMPONENT STYLES
+   Currant (#912930) Full-Height Sidebar with Antique Brass Highlights
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. MOBILE BACKDROP OVERLAY
+   -------------------------------------------------------------------------- */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 20, 28, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: calc(var(--z-sidebar) - 1);
+  opacity: 1;
+  transition: opacity var(--transition-normal);
+}
+
+@media (min-width: 1024px) {
+  .sidebar-backdrop {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. MAIN SIDEBAR CONTAINER
+   -------------------------------------------------------------------------- */
+.app-sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  min-height: 100vh;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: var(--z-sidebar);
+  border-right: 1px solid var(--sidebar-border);
+  box-shadow: 2px 0 12px rgba(35, 62, 101, 0.12);
+  transition: transform var(--transition-normal);
+  user-select: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Scrollbar Styling for Sidebar */
+.app-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+.app-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.app-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(221, 209, 188, 0.25);
+  border-radius: var(--radius-full);
+}
+.app-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(221, 209, 188, 0.4);
+}
+
+/* Mobile responsive drawer positioning */
+@media (max-width: 1023px) {
+  .app-sidebar {
+    width: 280px;
+    max-width: 85vw;
+    transform: translateX(-100%);
+  }
+
+  .app-sidebar.sidebar-open {
+    transform: translateX(0);
+    box-shadow: 8px 0 28px rgba(15, 20, 28, 0.35);
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-sidebar {
+    position: sticky;
+    top: 0;
+    transform: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. BRAND SECTION (Header)
+   -------------------------------------------------------------------------- */
+.sidebar-brand-wrapper {
+  padding: var(--space-6) var(--space-5) var(--space-5);
+  border-bottom: 1px solid var(--sidebar-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.brand-crest-frame {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(196, 159, 109, 0.16);
+  border: 1px solid rgba(196, 159, 109, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brass-light);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.brand-crest-frame:hover {
+  transform: scale(1.03);
+  border-color: var(--color-brass);
+}
+
+.brand-icon {
+  color: var(--color-brass-light);
+}
+
+.brand-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title-row {
+  display: flex;
+  align-items: center;
+}
+
+.brand-name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: var(--font-weight-bold);
+  color: #ffffff;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.brand-tagline {
+  font-family: var(--font-body);
+  font-size: 0.725rem;
+  color: var(--sidebar-text-muted);
+  letter-spacing: 0.02em;
+  margin-top: 2px;
+  opacity: 0.9;
+}
+
+.sidebar-close-btn {
+  display: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-plaster);
+  border-radius: var(--radius-sm);
+  padding: 6px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.sidebar-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+@media (max-width: 1023px) {
+  .sidebar-close-btn {
+    display: flex;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. NAVIGATION SECTION
+   -------------------------------------------------------------------------- */
+.sidebar-nav {
+  flex: 1;
+  padding: var(--space-5) var(--space-3);
+  overflow-y: auto;
+}
+
+.nav-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-3) var(--space-2);
+  font-size: 0.675rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: var(--font-weight-semibold);
+  color: rgba(240, 239, 234, 0.65);
+}
+
+.nav-group-accent {
+  color: var(--color-brass);
+  opacity: 0.75;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: var(--space-1);
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0.75rem 0.875rem;
+  border-radius: var(--radius-md);
+  color: var(--sidebar-text-muted);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.nav-icon {
+  flex-shrink: 0;
+  color: var(--color-plaster);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.nav-label {
+  flex: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Hover States */
+.nav-link:hover {
+  background-color: var(--sidebar-hover-bg);
+  color: #ffffff;
+}
+
+.nav-link:hover .nav-icon {
+  color: var(--color-brass-light);
+  transform: translateX(1px);
+}
+
+/* Active Navigation Item (Antique Brass Indicator + Glow) */
+.nav-link.nav-link-active {
+  background-color: var(--sidebar-active-bg);
+  color: #ffffff;
+  font-weight: var(--font-weight-semibold);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.nav-link.nav-link-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  bottom: 7px;
+  width: 4px;
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  background-color: var(--color-brass);
+  box-shadow: 0 0 8px rgba(196, 159, 109, 0.5);
+}
+
+.nav-link.nav-link-active .nav-icon {
+  color: var(--color-brass-light);
+}
+
+/* --------------------------------------------------------------------------
+   5. BOTTOM SECTION (Actions & Student Profile)
+   -------------------------------------------------------------------------- */
+.sidebar-bottom {
+  padding: var(--space-4) var(--space-3) var(--space-5);
+  border-top: 1px solid var(--sidebar-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.sidebar-bottom-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.bottom-link {
+  font-size: 0.85rem;
+  padding: 0.625rem 0.875rem;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.logout-btn:hover {
+  background-color: rgba(145, 41, 48, 0.35);
+  color: #ffffff;
+}
+
+.logout-btn:hover .nav-icon {
+  color: #ff9da4;
+}
+
+/* Student Profile Card */
+.sidebar-profile-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-3);
+  background-color: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(221, 209, 188, 0.18);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-1);
+}
+
+.profile-avatar-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  background: var(--color-currant-dark);
+  border: 2px solid var(--color-brass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brass-light);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.profile-name {
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-role {
+  color: var(--sidebar-text-muted);
+  font-size: 0.725rem;
+  letter-spacing: 0.02em;
+  margin-top: 1px;
+  opacity: 0.85;
+}

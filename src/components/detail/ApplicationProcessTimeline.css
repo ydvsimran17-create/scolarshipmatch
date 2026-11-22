@@ -1,0 +1,98 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - APPLICATION PROCESS TIMELINE COMPONENT
+   ========================================================================== */
+
+.application-process-card {
+  padding: var(--space-6);
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.timeline-steps-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--space-2);
+}
+
+.timeline-step-row {
+  display: flex;
+  gap: var(--space-4);
+  position: relative;
+}
+
+.timeline-node-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 36px;
+  flex-shrink: 0;
+}
+
+.timeline-step-bubble {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-midnight);
+  color: var(--color-plaster);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  box-shadow: 0 0 0 4px var(--color-plaster-light);
+  z-index: 2;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.timeline-step-row:hover .timeline-step-bubble {
+  transform: scale(1.08);
+  background-color: var(--color-currant);
+}
+
+.timeline-connecting-spine {
+  width: 2px;
+  flex-grow: 1;
+  background-color: var(--color-linen);
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.timeline-step-body {
+  flex-grow: 1;
+  padding-bottom: var(--space-6);
+}
+
+.timeline-step-row:last-child .timeline-step-body {
+  padding-bottom: 0;
+}
+
+.timeline-step-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-1);
+}
+
+.step-icon-badge {
+  color: var(--color-brass);
+  display: flex;
+  align-items: center;
+}
+
+.timeline-step-name {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-midnight);
+  margin: 0;
+}
+
+.timeline-step-desc {
+  margin: 0;
+  line-height: 1.5;
+}

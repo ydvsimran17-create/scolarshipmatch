@@ -1,0 +1,138 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - TYPOGRAPHY STYLES
+   Playfair Display (Serif Headings) + Inter (Modern Sans-Serif Body & UI)
+   ========================================================================== */
+
+/* Selected Large Headings: Playfair Display */
+h1,
+h2,
+h3,
+.font-heading {
+  font-family: var(--font-heading);
+  color: var(--text-heading);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+h1 {
+  font-size: clamp(2rem, 3.5vw + 1rem, var(--font-size-4xl));
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-4);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 2.2vw + 0.8rem, var(--font-size-3xl));
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-3);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 1.5vw + 0.6rem, var(--font-size-2xl));
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-2);
+}
+
+/* Functional UI Subheadings: Inter */
+h4,
+h5,
+h6,
+.font-subheading {
+  font-family: var(--font-body);
+  color: var(--text-heading);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+}
+
+h4 {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-2);
+}
+
+h5 {
+  font-size: var(--font-size-md);
+  margin-bottom: var(--space-2);
+}
+
+h6 {
+  font-size: var(--font-size-base);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-1);
+}
+
+/* Paragraphs & Text Variants */
+p {
+  margin-bottom: var(--space-3);
+  color: var(--text-primary);
+  line-height: var(--line-height-relaxed);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.text-lead {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+}
+
+.text-sm {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.text-xs {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-accent {
+  color: var(--color-brass-dark);
+}
+
+.text-currant {
+  color: var(--color-currant);
+}
+
+.text-indigo {
+  color: var(--color-midnight);
+}
+
+/* Editorial Blockquote */
+blockquote {
+  font-family: var(--font-heading);
+  font-style: italic;
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--color-brass);
+  color: var(--color-midnight);
+  margin: var(--space-4) 0;
+  background-color: var(--color-brass-subtle);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+code,
+kbd,
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+code {
+  background-color: var(--color-linen-light);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-xs);
+  color: var(--color-midnight);
+  border: 1px solid var(--color-linen);
+}

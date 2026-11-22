@@ -1,0 +1,94 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - AI ESSAY ASSISTANT PROMO CARD STYLES
+   ========================================================================== */
+
+.ai-essay-card {
+  background: linear-gradient(
+    145deg,
+    #ffffff 0%,
+    rgba(196, 159, 109, 0.08) 50%,
+    rgba(35, 62, 101, 0.04) 100%
+  );
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-xs);
+  margin-bottom: var(--space-5);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.ai-essay-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-brass);
+}
+
+.ai-essay-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.ai-icon-frame {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-midnight-subtle);
+  border: 1px solid var(--color-midnight-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.ai-pen-icon {
+  color: var(--color-midnight);
+}
+
+.ai-sparkle-icon {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: var(--color-brass-dark);
+}
+
+.ai-essay-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  margin-bottom: var(--space-2);
+}
+
+.ai-essay-desc {
+  color: var(--text-secondary);
+  line-height: var(--line-height-normal);
+  margin-bottom: var(--space-3);
+}
+
+.ai-perks-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-4);
+}
+
+.ai-perk-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.perk-check {
+  color: var(--color-brass-dark);
+}
+
+.ai-start-btn {
+  width: 100%;
+  justify-content: center;
+  font-weight: var(--font-weight-semibold);
+  box-shadow: var(--shadow-xs);
+}

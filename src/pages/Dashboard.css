@@ -1,0 +1,42 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - MAIN DASHBOARD PAGE STYLES
+   ========================================================================== */
+
+.dashboard-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dashboard-content-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+@media (min-width: 1024px) {
+  .dashboard-content-split {
+    grid-template-columns: minmax(0, 1.65fr) minmax(320px, 1fr);
+    align-items: start;
+  }
+}
+
+.dashboard-primary-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.dashboard-secondary-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.dashboard-demo-footer {
+  margin-top: var(--space-4);
+  padding: var(--space-4) 0 var(--space-6);
+  text-align: center;
+  border-top: 1px solid var(--border-color-subtle);
+}

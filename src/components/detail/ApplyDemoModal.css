@@ -1,0 +1,312 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - APPLY DEMO MODAL COMPONENT
+   ========================================================================== */
+
+.modal-backdrop-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 20, 28, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  z-index: 1000;
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-dialog-box {
+  width: 100%;
+  max-width: 580px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Modal Header */
+.modal-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-linen);
+  padding-bottom: var(--space-3);
+}
+
+.modal-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.modal-title-icon {
+  color: var(--color-currant);
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  margin: 0;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background-color: var(--color-plaster-dark);
+  color: var(--color-midnight);
+}
+
+/* Form Body */
+.modal-form-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Applicant Summary */
+.applicant-summary-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-plaster-light);
+  border: 1px solid var(--color-linen);
+  border-radius: var(--radius-lg);
+}
+
+.applicant-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-currant);
+  color: var(--color-white);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.applicant-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.applicant-name {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+}
+
+.applicant-match-pill {
+  font-size: var(--font-size-xs);
+  flex-shrink: 0;
+}
+
+/* Target Scholarship Summary */
+.target-scholarship-summary {
+  padding: var(--space-4);
+  background: linear-gradient(
+    135deg,
+    var(--color-plaster-light) 0%,
+    rgba(196, 159, 109, 0.1) 100%
+  );
+  border: 1px solid var(--color-brass-border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.target-scheme-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  margin: 0;
+}
+
+.target-scheme-provider {
+  margin: 0;
+}
+
+.target-scheme-badges {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* Readiness Check Box */
+.readiness-check-box {
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-plaster-light);
+  border: 1px solid var(--color-linen);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.readiness-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.readiness-icon {
+  color: var(--color-brass-dark);
+}
+
+.readiness-title {
+  color: var(--color-midnight);
+}
+
+.readiness-subtext {
+  margin: 0;
+}
+
+/* Demo Notice */
+.modal-demo-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background-color: rgba(145, 41, 48, 0.05);
+  border: 1px solid var(--color-currant-border);
+  border-radius: var(--radius-md);
+}
+
+.notice-icon {
+  color: var(--color-currant);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.modal-demo-notice p {
+  margin: 0;
+}
+
+/* Agreement Checkbox */
+.modal-agree-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  cursor: pointer;
+  user-select: none;
+}
+
+.modal-agree-checkbox input {
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+/* Buttons */
+.modal-buttons-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+/* Success View */
+.modal-success-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+  padding: var(--space-2) 0;
+}
+
+.success-crest {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  background-color: rgba(196, 159, 109, 0.16);
+  border: 2px solid var(--color-brass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-currant);
+}
+
+.success-heading {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight);
+  margin: 0;
+}
+
+.success-desc {
+  margin: 0;
+  max-width: 440px;
+}
+
+.application-receipt-box {
+  width: 100%;
+  padding: var(--space-4);
+  background-color: var(--color-plaster-light);
+  border: 1px solid var(--color-linen);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  text-align: left;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.receipt-val.font-mono {
+  font-family: monospace;
+  font-size: var(--font-size-sm);
+  color: var(--color-currant);
+}

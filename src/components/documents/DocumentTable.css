@@ -1,0 +1,244 @@
+/* ==========================================================================
+   SCHOLARSHIP MATCH - DOCUMENT TABLE STYLES
+   ========================================================================== */
+
+.document-table-card {
+  padding: 0;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.documents-tracking-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 860px;
+}
+
+.documents-tracking-table th {
+  background-color: var(--color-plaster-light);
+  color: var(--color-midnight);
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-4) var(--space-4);
+  border-bottom: 1px solid var(--color-linen);
+  white-space: nowrap;
+}
+
+.documents-tracking-table th.text-right {
+  text-align: right;
+}
+
+.doc-table-row {
+  border-bottom: 1px solid var(--color-linen-light);
+  transition: background-color var(--transition-fast);
+}
+
+.doc-table-row:hover {
+  background-color: rgba(196, 159, 109, 0.05);
+}
+
+.doc-table-row:last-child {
+  border-bottom: none;
+}
+
+.doc-table-row.row-missing {
+  background-color: rgba(145, 41, 48, 0.02);
+}
+
+.documents-tracking-table td {
+  padding: var(--space-4) var(--space-4);
+  vertical-align: middle;
+}
+
+/* Document Name Cell */
+.doc-name-cell-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  max-width: 340px;
+}
+
+.doc-icon-container {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-plaster-light);
+  border: 1px solid var(--color-linen);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.file-type-icon.pdf-icon {
+  color: var(--color-currant);
+}
+
+.file-type-icon.img-icon {
+  color: var(--color-midnight);
+}
+
+.file-type-icon.other-icon {
+  color: var(--color-brass-dark);
+}
+
+.doc-text-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.doc-item-title {
+  color: var(--color-midnight);
+  line-height: 1.35;
+}
+
+.doc-authority-hint {
+  line-height: 1.3;
+}
+
+.doc-demo-tag {
+  font-family: monospace;
+  font-size: 0.7rem;
+  background-color: var(--color-plaster);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-linen);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  width: fit-content;
+  margin-top: 2px;
+}
+
+/* Date cell */
+.doc-date-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  color: var(--text-primary);
+}
+
+.date-icon {
+  color: var(--text-muted);
+}
+
+/* Type & Size */
+.doc-type-pill-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.file-format-badge {
+  background-color: var(--color-plaster);
+  border: 1px solid var(--color-linen);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  color: var(--color-midnight);
+  font-weight: var(--font-weight-bold);
+  font-size: 0.72rem;
+}
+
+/* Verification Badges */
+.doc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.doc-badge-verified {
+  background-color: rgba(30, 126, 52, 0.1);
+  color: #1e7e34;
+  border: 1px solid rgba(30, 126, 52, 0.25);
+}
+
+.doc-badge-pending {
+  background-color: var(--color-brass-subtle);
+  color: var(--color-brass-dark);
+  border: 1px solid var(--color-brass-border);
+}
+
+.doc-badge-missing {
+  background-color: var(--color-currant-subtle);
+  color: var(--color-currant);
+  border: 1px solid var(--color-currant-border);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Actions button cluster */
+.actions-button-cluster {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.action-btn {
+  padding: 6px 10px;
+  font-size: var(--font-size-xs);
+  transition: all var(--transition-fast);
+}
+
+.preview-btn:hover {
+  background-color: var(--color-midnight);
+  color: #ffffff;
+  border-color: var(--color-midnight);
+}
+
+.delete-btn {
+  color: var(--text-muted);
+  padding: 6px;
+}
+
+.delete-btn:hover {
+  color: var(--color-currant);
+  background-color: var(--color-currant-subtle);
+}
+
+.upload-now-btn {
+  background-color: var(--color-currant);
+  color: #ffffff;
+  border: 1px solid var(--color-currant);
+}
+
+.upload-now-btn:hover {
+  background-color: var(--color-currant-dark);
+}
+
+/* Footer */
+.doc-table-footer {
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-plaster-light);
+  border-top: 1px solid var(--color-linen);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.footer-demo-icon {
+  color: var(--color-brass-dark);
+  flex-shrink: 0;
+}
