@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { Sparkles, Building2, Sliders, UserCheck, BookOpen } from 'lucide-react'
 import {
   ESSAY_TYPES,
@@ -5,7 +6,7 @@ import {
   WORD_LIMITS,
   ESSAY_PROMPTS,
 } from '../../data/essayData'
-import { discoveryScholarships } from '../../data/scholarshipsDiscoveryData'
+import scholarshipService from '../../services/scholarshipService'
 import './EssayConfigPanel.css'
 
 export default function EssayConfigPanel({
@@ -23,6 +24,16 @@ export default function EssayConfigPanel({
   onToggleProfileContext,
   studentProfile,
 }) {
+  // Scholarships for the dropdown come from the backend
+  const [scholarships, setScholarships] = useState([])
+
+  useEffect(() => {
+    scholarshipService
+      .getScholarships()
+      .then((data) => setScholarships(data))
+      .catch(() => {})
+  }, [])
+
   const handleTypeSelect = (type) => {
     onEssayTypeChange(type)
     // If topic is empty or matches previous default prompt, pre-fill with appropriate prompt
@@ -75,7 +86,7 @@ export default function EssayConfigPanel({
             onChange={(e) => onScholarshipChange(e.target.value)}
           >
             <option value="General Academic Scholarship">General Academic Scholarship</option>
-            {discoveryScholarships.map((sch) => (
+            {scholarships.map((sch) => (
               <option key={sch.id} value={sch.name}>
                 {sch.name} ({sch.provider})
               </option>

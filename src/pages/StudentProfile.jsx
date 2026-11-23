@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import {
   UserCheck,
   BookOpen,
@@ -12,7 +13,6 @@ import {
   AlertCircle,
 } from 'lucide-react'
 import {
-  initialStudentProfile,
   INDIAN_STATES,
   EDUCATION_LEVELS,
   YEARS_OF_STUDY,
@@ -21,29 +21,70 @@ import {
   SCHOLARSHIP_PREFERENCES,
   calculateProfileCompletion,
 } from '../data/profileData'
+import studentService from '../services/studentService'
+import { isApiConfigured } from '../services/api'
 import ProfileCompletionCard from '../components/profile/ProfileCompletionCard'
 import './StudentProfile.css'
 
-export default function StudentProfile() {
-  const storageKey = 'scholarship_student_profile'
+// Dropdowns that have a sensible "nothing special" default. The other important dropdowns
+// (education level, income, category, domicile) start on "Select..." so the student must choose.
+const DROPDOWN_DEFAULTS = {
+  yearOfStudy: YEARS_OF_STUDY[0],
+  incomeCertificateStatus: 'Yes - Revenue Authority Certificate Available',
+  disabilityStatus: 'None',
+  minorityStatus: 'Not Applicable',
+  preferredScholarshipType: SCHOLARSHIP_PREFERENCES[0],
+}
 
+// Fills the "nothing special" dropdowns when the saved profile has them empty,
+// so what the student sees on screen is exactly what gets saved.
+function withDropdownDefaults(profile) {
+  const filled = { ...profile }
+  Object.entries(DROPDOWN_DEFAULTS).forEach(([key, value]) => {
+    if (!filled[key]) filled[key] = value
+  })
+  return filled
+}
+
+export default function StudentProfile() {
   // Scroll to top on mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
-  // Load from localStorage or initialize with demo default
-  const [profile, setProfile] = useState(() => {
-    try {
-      const saved = localStorage.getItem(storageKey)
-      return saved ? JSON.parse(saved) : initialStudentProfile
-    } catch {
-      return initialStudentProfile
-    }
-  })
+  // The profile is loaded through the service layer (backend, or demo data if no backend)
+  const [profile, setProfile] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState(null)
+  const [saving, setSaving] = useState(false)
 
   const [savedSuccessMsg, setSavedSuccessMsg] = useState('')
   const [validationError, setValidationError] = useState('')
+
+  useEffect(() => {
+    let cancelled = false
+
+    studentService
+      .getProfile()
+      .then((data) => {
+        if (!cancelled) setProfile(withDropdownDefaults(data))
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          setLoadError({
+            message: err?.message || 'Could not load your profile.',
+            needsLogin: err?.status === 401,
+          })
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false)
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   // Handle generic field change
   const handleChange = (field, value) => {
@@ -58,7 +99,7 @@ export default function StudentProfile() {
   const completionPercentage = calculateProfileCompletion(profile)
 
   // Save handler
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault()
 
     // Basic validation
@@ -71,32 +112,73 @@ export default function StudentProfile() {
       return
     }
 
+    setSaving(true)
     try {
-      localStorage.setItem(storageKey, JSON.stringify(profile))
-      setSavedSuccessMsg('Profile updated and saved successfully! Match recommendations refreshed.')
+      await studentService.updateProfile(profile)
+      setSavedSuccessMsg('Profile saved successfully! Your scholarship matches now use this profile.')
       setValidationError('')
-
-      const timer = setTimeout(() => {
-        setSavedSuccessMsg('')
-      }, 4000)
-      return () => clearTimeout(timer)
-    } catch {
-      setValidationError('Unable to access localStorage to save profile.')
+      setTimeout(() => setSavedSuccessMsg(''), 4000)
+    } catch (err) {
+      setValidationError(
+        err?.data?.error || err?.message || 'Could not save your profile. Please try again.'
+      )
+    } finally {
+      setSaving(false)
     }
   }
 
-  // Reset to default sample profile
-  const handleReset = () => {
-    if (window.confirm('Reset student profile to default verified demo credentials?')) {
-      setProfile(initialStudentProfile)
-      try {
-        localStorage.setItem(storageKey, JSON.stringify(initialStudentProfile))
-      } catch {
-        // fallback
-      }
-      setSavedSuccessMsg('Profile reset to initial demo defaults.')
+  // Backend mode: discard unsaved edits and reload the saved profile.
+  // Demo mode: reset to the sample profile.
+  const handleReset = async () => {
+    const message = isApiConfigured()
+      ? 'Discard unsaved changes and reload your saved profile?'
+      : 'Reset student profile to default verified demo credentials?'
+    if (!window.confirm(message)) return
+
+    try {
+      const data = isApiConfigured()
+        ? await studentService.getProfile()
+        : await studentService.resetProfile()
+      setProfile(withDropdownDefaults(data))
+      setValidationError('')
+      setSavedSuccessMsg(
+        isApiConfigured() ? 'Unsaved changes discarded.' : 'Profile reset to initial demo defaults.'
+      )
       setTimeout(() => setSavedSuccessMsg(''), 3000)
+    } catch (err) {
+      setValidationError(err?.message || 'Could not reload your profile.')
     }
+  }
+
+  // Loading / error states
+  if (loading) {
+    return (
+      <div className="student-profile-page-container">
+        <div className="profile-section-card card">
+          <p className="text-sm text-secondary">Loading your profile&hellip;</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (loadError) {
+    return (
+      <div className="student-profile-page-container">
+        <div className="profile-section-card card">
+          <h2 className="section-heading-text">Could not load your profile</h2>
+          <p className="text-sm text-secondary">
+            {loadError.needsLogin
+              ? 'Please log in to view and edit your profile.'
+              : loadError.message}
+          </p>
+          {loadError.needsLogin && (
+            <Link to="/login" className="btn btn-primary btn-sm">
+              Go to login
+            </Link>
+          )}
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -108,9 +190,11 @@ export default function StudentProfile() {
             <span className="badge badge-indigo">
               <UserCheck size={13} /> Student Profile Builder
             </span>
-            <span className="badge badge-currant">
-              <ShieldAlert size={12} /> Demo Data
-            </span>
+            {!isApiConfigured() && (
+              <span className="badge badge-currant">
+                <ShieldAlert size={12} /> Demo Data
+              </span>
+            )}
             <span className="badge badge-brass">
               <Sparkles size={12} /> Live Matching Engine
             </span>
@@ -129,14 +213,15 @@ export default function StudentProfile() {
             className="btn btn-outline btn-sm reset-btn"
             onClick={handleReset}
           >
-            <RotateCcw size={14} /> Reset Defaults
+            <RotateCcw size={14} /> {isApiConfigured() ? 'Discard Changes' : 'Reset Defaults'}
           </button>
           <button
             type="submit"
             form="profile-form"
             className="btn btn-primary btn-save-prominent"
+            disabled={saving}
           >
-            <Save size={16} /> Save Profile
+            <Save size={16} /> {saving ? 'Saving…' : 'Save Profile'}
           </button>
         </div>
       </header>
@@ -324,6 +409,7 @@ export default function StudentProfile() {
                   onChange={(e) => handleChange('educationLevel', e.target.value)}
                   required
                 >
+                  <option value="">Select education level...</option>
                   {EDUCATION_LEVELS.map((lvl) => (
                     <option key={lvl} value={lvl}>
                       {lvl}
@@ -445,6 +531,7 @@ export default function StudentProfile() {
                   onChange={(e) => handleChange('annualIncome', e.target.value)}
                   required
                 >
+                  <option value="">Select income range...</option>
                   {INCOME_SLABS.map((slab) => (
                     <option key={slab} value={slab}>
                       {slab}
@@ -521,6 +608,7 @@ export default function StudentProfile() {
                   onChange={(e) => handleChange('category', e.target.value)}
                   required
                 >
+                  <option value="">Select category...</option>
                   {CATEGORIES.map((cat) => (
                     <option key={cat} value={cat}>
                       {cat}
@@ -541,6 +629,7 @@ export default function StudentProfile() {
                   onChange={(e) => handleChange('domicileState', e.target.value)}
                   required
                 >
+                  <option value="">Select domicile state...</option>
                   {INDIAN_STATES.map((s) => (
                     <option key={s} value={s}>
                       {s}
@@ -686,13 +775,15 @@ export default function StudentProfile() {
               className="btn btn-outline"
               onClick={handleReset}
             >
-              <RotateCcw size={15} /> Reset to Demo Defaults
+              <RotateCcw size={15} />{' '}
+              {isApiConfigured() ? 'Discard Changes' : 'Reset to Demo Defaults'}
             </button>
             <button
               type="submit"
               className="btn btn-primary btn-lg"
+              disabled={saving}
             >
-              <Save size={16} /> Save Student Profile
+              <Save size={16} /> {saving ? 'Saving…' : 'Save Student Profile'}
             </button>
           </div>
         </form>

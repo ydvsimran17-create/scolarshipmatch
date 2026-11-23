@@ -44,9 +44,24 @@ export const essayService = {
    */
   async generateEssayDraft(config = {}) {
     if (isApiConfigured()) {
-      return apiClient.post(ESSAY_ENDPOINTS.GENERATE, config)
+      const list = await apiClient.get('/scholarships')
+      const items = Array.isArray(list) ? list : list.scholarships || []
+      const match = items.find((s) => s.name === config.scholarshipName)
+      if (!match) {
+        throw new Error('Please select a scholarship from the list first.')
+      }
+      const data = await apiClient.post('/essays/draft', {
+        scholarship_id: match.id,
+        essay_prompt: config.topic,
+      })
+      const words = (data.draft || '').trim().split(/\s+/).filter(Boolean).length
+      return {
+        draft: data.draft,
+        generatedAt: new Date().toISOString(),
+        wordCount: words,
+        config,
+      }
     }
-
     // Demo Mode Fallback: use simulated dynamic essay generator
     const draftText = generateMockDraft({
       essayType: config.essayType || config.scholarshipType || 'Statement of Purpose',

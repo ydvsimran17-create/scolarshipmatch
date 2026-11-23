@@ -16,6 +16,7 @@ import {
   expandDraftText,
 } from '../data/essayData'
 import { initialStudentProfile } from '../data/profileData'
+import essayService from '../services/essayService'
 import EssayConfigPanel from '../components/essay/EssayConfigPanel'
 import EssayEditor from '../components/essay/EssayEditor'
 import EssaySupportingPanel from '../components/essay/EssaySupportingPanel'
@@ -87,10 +88,10 @@ export default function AiEssayAssistant() {
   }
 
   // 1. Generate Draft (Simulated AI generation)
-  const handleGenerate = () => {
+    const handleGenerate = async () => {
     setIsGenerating(true)
-    setTimeout(() => {
-      const generated = generateMockDraft({
+    try {
+      const result = await essayService.generateEssayDraft({
         essayType,
         scholarshipName,
         topic,
@@ -99,10 +100,13 @@ export default function AiEssayAssistant() {
         useProfileContext,
         studentProfile,
       })
-      setContent(generated)
-      setIsGenerating(false)
+      setContent(result.draft)
       showToast('Generated fresh scholarship essay draft! Personalize with your milestones.')
-    }, 650)
+    } catch (err) {
+      showToast(err?.data?.error || err?.message || 'Could not generate the draft.')
+    } finally {
+      setIsGenerating(false)
+    }
   }
 
   // 2. Regenerate

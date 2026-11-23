@@ -10,8 +10,10 @@ app.use(morgan("dev"));
 
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/profiles", require("./routes/profileRoutes"));
+app.use("/api/student", require("./routes/studentRoutes"));
 app.use("/api/scholarships", require("./routes/scholarshipRoutes"));
 app.use("/api/essays", require("./routes/essayRoutes"));
+
 app.get("/health", (req, res) => {
   res.json({ status: "ok", service: "scholarshipmatch-backend" });
 });

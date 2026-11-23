@@ -19,6 +19,7 @@ const StudentProfile = sequelize.define("StudentProfile", {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+  details: DataTypes.JSONB, // the full profile exactly as the frontend form stores it
 });
 
 // A user has one student profile; a profile belongs to one user
