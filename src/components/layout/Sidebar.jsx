@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import {
   GraduationCap,
   LayoutDashboard,
@@ -13,10 +13,14 @@ import {
   Sparkles,
   UserCheck,
 } from 'lucide-react'
+import studentService from '../../services/studentService'
+import { removeAuthToken } from '../../services/api'
 import './Sidebar.css'
 
 export default function Sidebar({ isOpen, onClose }) {
   const location = useLocation()
+  const navigate = useNavigate()
+  const [student, setStudent] = useState({ name: 'Student', initials: 'S' })
 
   // Navigation Items Specification
   const navItems = [
@@ -27,6 +31,27 @@ export default function Sidebar({ isOpen, onClose }) {
     { label: 'Student Profile', to: '/profile', icon: UserCheck },
     { label: 'Essay Assistant', to: '/essay-assistant', icon: PenTool },
   ]
+
+  // Load the logged-in student's real name from the backend
+  useEffect(() => {
+    let cancelled = false
+    studentService
+      .getProfile()
+      .then((p) => {
+        if (cancelled) return
+        const name = (p?.fullName || '').trim() || 'Student'
+        const initials = name
+          .split(/\s+/)
+          .slice(0, 2)
+          .map((w) => w[0]?.toUpperCase() || '')
+          .join('')
+        setStudent({ name, initials: initials || 'S' })
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+    }
+  }, [location.pathname])
 
   // Close mobile drawer on route transition
   useEffect(() => {
@@ -47,7 +72,8 @@ export default function Sidebar({ isOpen, onClose }) {
   }, [isOpen, onClose])
 
   const handleLogout = () => {
-    alert('Logged out (Demo action).')
+    removeAuthToken()
+    navigate('/login')
   }
 
   return (
@@ -65,9 +91,7 @@ export default function Sidebar({ isOpen, onClose }) {
         className={`app-sidebar ${isOpen ? 'sidebar-open' : ''}`}
         aria-label="Application Sidebar"
       >
-        {/* ==================================================================
-            A. BRAND SECTION
-            ================================================================== */}
+        {/* A. BRAND SECTION */}
         <div className="sidebar-brand-wrapper">
           <div className="sidebar-brand">
             <div className="brand-crest-frame">
@@ -92,9 +116,7 @@ export default function Sidebar({ isOpen, onClose }) {
           </button>
         </div>
 
-        {/* ==================================================================
-            B. NAVIGATION SECTION
-            ================================================================== */}
+        {/* B. NAVIGATION SECTION */}
         <nav className="sidebar-nav" aria-label="Main Navigation">
           <div className="nav-group-header">
             <span>Main Menu</span>
@@ -122,9 +144,7 @@ export default function Sidebar({ isOpen, onClose }) {
           </ul>
         </nav>
 
-        {/* ==================================================================
-            C. BOTTOM SECTION
-            ================================================================== */}
+        {/* C. BOTTOM SECTION */}
         <div className="sidebar-bottom">
           <div className="sidebar-bottom-actions">
             {/* Settings Link */}
@@ -153,10 +173,10 @@ export default function Sidebar({ isOpen, onClose }) {
           {/* Student Profile Row */}
           <NavLink to="/profile" className="sidebar-profile-card" title="View & Edit Student Profile">
             <div className="profile-avatar-circle" aria-hidden="true">
-              <span>AS</span>
+              <span>{student.initials}</span>
             </div>
             <div className="profile-details">
-              <div className="profile-name">Anvaya Sharma</div>
+              <div className="profile-name">{student.name}</div>
               <div className="profile-role">Student</div>
             </div>
           </NavLink>

@@ -1,23 +1,49 @@
-import { useState } from 'react'
+
+import { useState, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Menu, GraduationCap } from 'lucide-react'
 import Sidebar from './Sidebar'
+import studentService from '../../services/studentService'
 import './DashboardLayout.css'
 
 export default function DashboardLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [studentName, setStudentName] = useState('Student')
+  const [studentInitials, setStudentInitials] = useState('S')
+
+  useEffect(() => {
+    let cancelled = false
+
+    studentService
+      .getProfile()
+      .then((profile) => {
+        if (cancelled) return
+
+        const name = (profile?.fullName || '').trim() || 'Student'
+        const initials = name
+          .split(/\s+/)
+          .slice(0, 2)
+          .map((word) => word[0]?.toUpperCase() || '')
+          .join('')
+
+        setStudentName(name)
+        setStudentInitials(initials || 'S')
+      })
+      .catch(() => {})
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   return (
     <div className="dashboard-container">
-      {/* Full-Height Sidebar Component */}
       <Sidebar
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
       />
 
-      {/* Main Workspace Frame */}
       <div className="dashboard-main-frame">
-        {/* Mobile Top Navigation Bar (Active on <1024px) */}
         <header className="mobile-top-bar" aria-label="Mobile Navigation Bar">
           <button
             type="button"
@@ -35,12 +61,14 @@ export default function DashboardLayout() {
             <span className="mobile-brand-text">Scholarship Match</span>
           </div>
 
-          <div className="mobile-profile-avatar" title="Anvaya Sharma (Student)">
-            <span>AS</span>
+          <div
+            className="mobile-profile-avatar"
+            title={`${studentName} (Student)`}
+          >
+            <span>{studentInitials}</span>
           </div>
         </header>
 
-        {/* Primary Workspace Content Area */}
         <main className="dashboard-workspace-viewport">
           <div className="dashboard-content-container">
             <Outlet />

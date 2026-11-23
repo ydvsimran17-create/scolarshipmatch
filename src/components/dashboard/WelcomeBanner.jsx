@@ -1,36 +1,33 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Sparkles, ArrowRight } from 'lucide-react'
 import { calculateProfileCompletion } from '../../data/profileData'
+import studentService from '../../services/studentService'
 import welcomeIllustration from '../../assets/ai-scholarship-assistant.png'
 import './WelcomeBanner.css'
 
-export default function WelcomeBanner({ studentName = 'Anvaya' }) {
+export default function WelcomeBanner() {
   const navigate = useNavigate()
+  const [displayName, setDisplayName] = useState('Student')
+  const [completion, setCompletion] = useState(0)
 
-  const [profileData] = useState(() => {
-    try {
-      const saved = localStorage.getItem('scholarship_student_profile')
-      if (saved) {
-        const parsed = JSON.parse(saved)
-        const pct = calculateProfileCompletion(parsed)
-        const first =
-          parsed.fullName && typeof parsed.fullName === 'string' && parsed.fullName.trim()
-            ? parsed.fullName.trim().split(' ')[0]
-            : studentName
-        return {
-          completion: typeof pct === 'number' && !isNaN(pct) ? pct : 80,
-          displayName: first,
-        }
-      }
-    } catch {
-      // Retain fallback defaults
+  // Real name and profile strength come from the saved backend profile
+  useEffect(() => {
+    let cancelled = false
+    studentService
+      .getProfile()
+      .then((p) => {
+        if (cancelled || !p) return
+        const first = (p.fullName || '').trim().split(' ')[0]
+        if (first) setDisplayName(first)
+        const pct = calculateProfileCompletion(p)
+        if (typeof pct === 'number' && !isNaN(pct)) setCompletion(pct)
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
     }
-    return {
-      completion: 80,
-      displayName: studentName,
-    }
-  })
+  }, [])
 
   return (
     <section className="welcome-banner-card card" aria-label="Welcome Overview">
@@ -44,7 +41,7 @@ export default function WelcomeBanner({ studentName = 'Anvaya' }) {
           </span>
         </div>
 
-        <h1 className="welcome-heading">Welcome back, {profileData.displayName}!</h1>
+        <h1 className="welcome-heading">Welcome back, {displayName}!</h1>
 
         <p className="welcome-subtitle">
           Discover opportunities that bring your academic dreams closer.
@@ -65,7 +62,7 @@ export default function WelcomeBanner({ studentName = 'Anvaya' }) {
             onClick={() => navigate('/settings')}
             title="Update your student profile in Settings"
           >
-            Profile Strength: {profileData.completion}%
+            Profile Strength: {completion}%
           </button>
         </div>
       </div>

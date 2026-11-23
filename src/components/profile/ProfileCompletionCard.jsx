@@ -1,3 +1,4 @@
+
 import { Sparkles, CheckCircle2, ShieldCheck } from 'lucide-react'
 import './ProfileCompletionCard.css'
 
@@ -5,22 +6,32 @@ export default function ProfileCompletionCard({
   profile,
   completionPercentage,
 }) {
+  const studentName = (profile?.fullName || '').trim() || 'Student'
+
+  const studentInitials = studentName
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((word) => word[0]?.toUpperCase() || '')
+    .join('') || 'S'
+
   return (
     <aside className="profile-completion-card card" aria-label="Profile completion status">
       {/* Student Badge Row */}
       <div className="profile-student-header">
         <div className="student-crest-avatar" aria-hidden="true">
-          <span>AS</span>
+          <span>{studentInitials}</span>
         </div>
+
         <div className="student-crest-meta">
           <div className="student-name-title">
-            <h3 className="student-full-name">{profile.fullName || 'Anvaya Sharma'}</h3>
+            <h3 className="student-full-name">{studentName}</h3>
             <span className="verified-identity-pill badge badge-brass text-xs">
               <ShieldCheck size={12} /> Student Verified
             </span>
           </div>
+
           <p className="student-academic-sub text-xs text-muted">
-            {profile.course || 'Computer Science & Engineering'} &bull; {profile.institution || 'Delhi Technological University'}
+            {profile?.course || 'Computer Science & Engineering'} &bull; {profile?.institution || 'Delhi Technological University'}
           </p>
         </div>
       </div>
@@ -54,8 +65,11 @@ export default function ProfileCompletionCard({
       <div className="completion-advisory-box">
         <div className="advisory-title-line">
           <Sparkles size={14} className="advisory-icon" />
-          <span className="text-xs font-semibold text-midnight">AI Discovery Boost</span>
+          <span className="text-xs font-semibold text-midnight">
+            AI Discovery Boost
+          </span>
         </div>
+
         <p className="advisory-desc text-xs text-secondary">
           {completionPercentage >= 90
             ? 'Excellent! Your comprehensive profile unlocks 95%+ accurate match recommendations across state and central portals.'
@@ -69,10 +83,12 @@ export default function ProfileCompletionCard({
           <CheckCircle2 size={13} className="check-icon" />
           <span>Aadhaar e-KYC linked to state domicile</span>
         </div>
+
         <div className="highlight-row text-xs">
           <CheckCircle2 size={13} className="check-icon" />
           <span>Academic merit transcripts verified</span>
         </div>
+
         <div className="highlight-row text-xs">
           <CheckCircle2 size={13} className="check-icon" />
           <span>Family income slab under ₹4.5 Lakhs ceiling</span>

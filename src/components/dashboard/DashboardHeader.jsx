@@ -8,16 +8,39 @@ import {
   X,
   SlidersHorizontal,
 } from 'lucide-react'
-import { studentProfile, sampleNotifications } from '../../data/dashboardData'
+import { sampleNotifications } from '../../data/dashboardData'
+import studentService from '../../services/studentService'
 import './DashboardHeader.css'
 
 export default function DashboardHeader({ onSearchChange, searchQuery = '' }) {
   const navigate = useNavigate()
   const [showNotifications, setShowNotifications] = useState(false)
   const [notifications, setNotifications] = useState(sampleNotifications)
+  const [student, setStudent] = useState({ name: 'Student', initials: 'S' })
   const notifRef = useRef(null)
 
   const unreadCount = notifications.filter((n) => n.unread).length
+
+  // Load the logged-in student's real name from the backend
+  useEffect(() => {
+    let cancelled = false
+    studentService
+      .getProfile()
+      .then((p) => {
+        if (cancelled) return
+        const name = (p?.fullName || '').trim() || 'Student'
+        const initials = name
+          .split(/\s+/)
+          .slice(0, 2)
+          .map((w) => w[0]?.toUpperCase() || '')
+          .join('')
+        setStudent({ name, initials: initials || 'S' })
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   // Close notifications dropdown when clicking outside
   useEffect(() => {
@@ -157,11 +180,11 @@ export default function DashboardHeader({ onSearchChange, searchQuery = '' }) {
           title="View Student Profile & Settings"
         >
           <div className="header-avatar-circle" aria-hidden="true">
-            <span>{studentProfile.avatarInitials}</span>
+            <span>{student.initials}</span>
           </div>
           <div className="header-profile-text">
-            <span className="header-student-name">{studentProfile.name}</span>
-            <span className="header-student-role">{studentProfile.role}</span>
+            <span className="header-student-name">{student.name}</span>
+            <span className="header-student-role">Student</span>
           </div>
           <SlidersHorizontal size={14} className="header-profile-chevron" />
         </button>
